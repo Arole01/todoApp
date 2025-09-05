@@ -22,6 +22,7 @@ body {
   font-size: 30px;
   border: none;
   border-radius: 10px;
+  padding-bottom: 10px;
 }
 
 .search::placeholder {
@@ -44,6 +45,8 @@ body {
   background-color: #fbf3d5;
   margin: 20px 41%;
   font-size: 26px;
+  margin-bottom: 15px;
+  margin-top: 40px;
 }
 
 .todotext {
@@ -55,6 +58,7 @@ body {
   font-size: 30px;
   border: none;
   border-radius: 10px;
+  margin-top: -20px;
 }
 
 button {
@@ -68,6 +72,35 @@ button {
 }
 
 .form-delete {
-  display: grid;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  margin-top: 40px;
+  /*gap: 0px;*/
+}
+
+.item {
+  
+  background-color: #4b4a72;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: -15px;
+  width: 350px;
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  gap: 10px;
+  color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3)
+}
+
+
+
+.delet {
+  flex-shrink: 0; 
+  cursor: pointer; 
+  display: flex;
+  align-items: center;
+  color: white;
+  transform: translateX(20%);
 }

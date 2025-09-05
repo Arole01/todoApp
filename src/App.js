@@ -12,23 +12,27 @@ const Todo = () => {
       <input className="search" type="text" placeholder="Search Todos"/>
     </form>
 
-    <h1 className="addTodo">Add a new todo...</h1>
-    {/*<h2> this is my {todo}</h2>*/}
+    
     
     <div className="form-delete">
       {todolist.map((items,index)=>
-      <h1 key={index}>{items} <MdDelete className="delet" onClick={()=>{
+      <h1 className="item" key={index}>{items} <MdDelete className="delet" onClick={()=>{
+        <span className="inner-text"/>
       setTodolist(todolist.filter((dof, items)=> items!== index))
       }}/>
       </h1>
       )}
     </div>
+
     <form onSubmit={(e)=>{
       e.preventDefault()
       setTodolist([...todolist,todo])
       setTodo("")
     }}>
-      <input className="todotext" type="text" value={todo} onChange={(e)=>{setTodo(e.target.value)}}/>
+      <h1 className="addTodo">Add a new todo...</h1>
+
+      <input className="todotext" type="text"  value={todo} onChange={(e)=>{setTodo(e.target.value)}}/>
+      
       <button type="submit">Submit</button>
     </form>
 
