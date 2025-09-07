@@ -1,10 +1,20 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 const Todo = () => {
 
   const [ todo, setTodo] = useState("");
-  const [todolist,setTodolist] = useState([])
+  const [todolist,setTodolist] = useState(()=>{const checkTodo = localStorage.getItem("todo")
+  if(checkTodo) {
+    return JSON.parse(checkTodo)
+  }else{
+    return []
+  }})
+  
+
+  useEffect(()=>{
+    localStorage.setItem("todo",JSON.stringify(todolist))
+  }, [todolist])
   return (
     <div>
     <h1 className="title">My Todo List</h1>
@@ -13,17 +23,17 @@ const Todo = () => {
     </form>
 
     
-    
+    <div className="todo-container">
     <div className="form-delete">
       {todolist.map((items,index)=>
-      <h1 className="item" key={index}>{items} <MdDelete className="delet" onClick={()=>{
-        <span className="inner-text"/>
+      <div style={{display:"flex"}} key={index}>
+      <h1 className="item" >{items}</h1> <MdDelete className="delet" onClick={()=>{
       setTodolist(todolist.filter((dof, items)=> items!== index))
       }}/>
-      </h1>
+      </div>
       )}
     </div>
-
+      </div>
     <form onSubmit={(e)=>{
       e.preventDefault()
       setTodolist([...todolist,todo])
@@ -35,7 +45,7 @@ const Todo = () => {
       
       <button type="submit">Submit</button>
     </form>
-
+  
     </div>
   )
 
