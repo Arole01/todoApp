@@ -1,62 +1,98 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import { MdDelete } from "react-icons/md";
-const Todo = () => {
+// import "./App.css";
+// import { useState, useEffect } from "react";
+// import { MdDelete } from "react-icons/md";
+// const Todo = () => {
 
-  const [ todo, setTodo] = useState("");
-  const [todolist,setTodolist] = useState(()=>{const checkTodo = localStorage.getItem("todo")
-  if(checkTodo) {
-    return JSON.parse(checkTodo)
-  }else{
-    return []
-  }})
+//   const [ todo, setTodo] = useState("");
+//   const [todolist,setTodolist] = useState(()=>{const checkTodo = localStorage.getItem("todo")
+//   if(checkTodo) {
+//     return JSON.parse(checkTodo)
+//   }else{
+//     return []
+//   }})
   
 
-  useEffect(()=>{
-    localStorage.setItem("todo",JSON.stringify(todolist))
-  }, [todolist])
-  return (
-    <div>
-    <h1 className="title">My Todo List</h1>
-    <form >
-      <input className="search" type="text" placeholder="Search Todos"/>
-    </form>
+//   useEffect(()=>{
+//     localStorage.setItem("todo",JSON.stringify(todolist))
+//   }, [todolist])
+//   return (
+//     <div>
+//     <h1 className="title">My Todo List</h1>
+//     <form >
+//       <input className="search" type="text" placeholder="Search Todos"/>
+//     </form>
 
     
-    <div className="todo-container">
-    <div className="form-delete">
-      {todolist.map((items,index)=>
-      <div style={{display:"flex"}} key={index}>
-      <h1 className="item" >{items}</h1> <MdDelete className="delet" onClick={()=>{
-      setTodolist(todolist.filter((dof, items)=> items!== index))
-      }}/>
-      </div>
-      )}
-    </div>
-      </div>
-    <form onSubmit={(e)=>{
-      e.preventDefault()
-      setTodolist([...todolist,todo])
-      setTodo("")
-    }}>
-      <h1 className="addTodo">Add a new todo...</h1>
+//     <div className="todo-container">
+//     <div className="form-delete">
+//       {todolist.map((items,index)=>
+//       <div style={{display:"flex"}} key={index}>
+//       <h1 className="item" >{items}</h1> <MdDelete className="delet" onClick={()=>{
+//       setTodolist(todolist.filter((dof, items)=> items!== index))
+//       }}/>
+//       </div>
+//       )}
+//     </div>
+//       </div>
+//     <form onSubmit={(e)=>{
+//       e.preventDefault()
+//       setTodolist([...todolist,todo])
+//       setTodo("")
+//     }}>
+//       <h1 className="addTodo">Add a new todo...</h1>
 
-      <input className="todotext" type="text"  value={todo} onChange={(e)=>{setTodo(e.target.value)}}/>
+//       <input className="todotext" type="text"  value={todo} onChange={(e)=>{setTodo(e.target.value)}}/>
       
-      <button type="submit">Submit</button>
-    </form>
+//       <button type="submit">Submit</button>
+//     </form>
   
-    </div>
-  )
+//     </div>
+//   )
 
+// }
+
+// export default Todo;
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import About from "./About"
+import { useState, useEffect } from "react";
+
+const App = () => {
+  const [names,setnames]= useState("")
+    const [realName,setRealname] = useState(()=>{
+        const check = localStorage.getItem("ourinfo")
+        if (!check || check =="undefined"){
+            return""
+        }else{
+            return JSON.parse(check)
+        }
+    })
+
+    useEffect(()=>{
+        localStorage.setItem("ourinfo",JSON.stringify(realName))
+    },[realName])
+
+  return (
+    <BrowserRouter>
+
+      <Link to="/home">this Home</Link>
+
+      <Link to="/about">this is about page</Link>
+    <Routes>
+
+    <Route path="/" element={<div>
+      <h1>Welcome to context API</h1>
+    </div>}></Route>
+
+    <Route path="/home" element={<Home setRealname={setRealname} realName={realName}
+    names={names} setnames={setnames}/>}></Route>
+    <Route path="/about" element={<About realName={realName} />}></Route>
+    </Routes>
+    </BrowserRouter>
+  )
 }
 
 
+export default App;
 
-
-
-
-
-
-
-export default Todo;

@@ -1,0 +1,28 @@
+
+
+const Home = ({realName,setRealname,names,setnames}) => {
+    
+    return(
+        <div>
+            <form onSubmit={(e)=> {
+                e.preventDefault()
+                setRealname(names)
+            }}>
+        <input type="text" placeholder="what is your name" 
+        onChange={(e)=>setnames(e.target.value)
+        }/> 
+
+        <button>Click to add name</button>
+        </form>
+        <h1>
+            welcome {realName.toUpperCase()}, this is the homepage
+        </h1>
+
+        </div>
+        
+    )
+}
+
+
+
+export default Home;
