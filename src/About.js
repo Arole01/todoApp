@@ -1,8 +1,10 @@
+import { useContext } from "react";
+import { context } from "./Context";
 
-const About =({realName})=>{
+const About =()=>{
 
 
-
+const {realName} = useContext(context)
 
     return(
         <div>

@@ -57,25 +57,15 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import About from "./About"
 import { useState, useEffect } from "react";
+import { NameContext } from "./Context";
 
 const App = () => {
-  const [names,setnames]= useState("")
-    const [realName,setRealname] = useState(()=>{
-        const check = localStorage.getItem("ourinfo")
-        if (!check || check =="undefined"){
-            return""
-        }else{
-            return JSON.parse(check)
-        }
-    })
-
-    useEffect(()=>{
-        localStorage.setItem("ourinfo",JSON.stringify(realName))
-    },[realName])
+  
 
   return (
+    <NameContext>
     <BrowserRouter>
-
+  
       <Link to="/home">this Home</Link>
 
       <Link to="/about">this is about page</Link>
@@ -85,11 +75,12 @@ const App = () => {
       <h1>Welcome to context API</h1>
     </div>}></Route>
 
-    <Route path="/home" element={<Home setRealname={setRealname} realName={realName}
-    names={names} setnames={setnames}/>}></Route>
-    <Route path="/about" element={<About realName={realName} />}></Route>
+    <Route path="/home" element={<Home/>}></Route>
+    <Route path="/about" element={<About/>}></Route>
     </Routes>
+    
     </BrowserRouter>
+    </NameContext>
   )
 }
 

@@ -1,7 +1,9 @@
+import { useContext } from "react";
+import { context, NameContext } from "./Context";
 
 
-const Home = ({realName,setRealname,names,setnames}) => {
-    
+const Home = () => {
+    const {setnames,setRealname,names,realName} = useContext(context)
     return(
         <div>
             <form onSubmit={(e)=> {
