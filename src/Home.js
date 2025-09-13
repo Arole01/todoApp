@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { context, NameContext } from "./Context";
+import { context } from "./Context";
 
 
 const Home = () => {

@@ -56,7 +56,7 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import About from "./About"
-import { useState, useEffect } from "react";
+import Contact from "./Contact";
 import { NameContext } from "./Context";
 
 const App = () => {
@@ -69,6 +69,8 @@ const App = () => {
       <Link to="/home">this Home</Link>
 
       <Link to="/about">this is about page</Link>
+
+      <Link to="/contact">contact us here</Link>
     <Routes>
 
     <Route path="/" element={<div>
@@ -77,6 +79,7 @@ const App = () => {
 
     <Route path="/home" element={<Home/>}></Route>
     <Route path="/about" element={<About/>}></Route>
+    <Route path="/contact" element={<Contact/>}></Route>
     </Routes>
     
     </BrowserRouter>
